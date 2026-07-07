@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>Dashboard</title>
+
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/theme.css">
+
+</head>
+
+<body>
+
+<div class="app">
+
+<main class="main">
+
+<h1>Dashboard</h1>
+
+<div class="card glass">
+
+<h2>Statistics</h2>
+
+<p id="totalChats"></p>
+
+<p id="favoriteChats"></p>
+
+</div>
+
+</main>
+
+</div>
+
+<script>
+
+const chats=JSON.parse(
+
+localStorage.getItem("ai-editor-history")
+
+)||[];
+
+document.getElementById("totalChats").innerHTML=
+
+"Total Chats : "+chats.length;
+
+document.getElementById("favoriteChats").innerHTML=
+
+"Favorites : "+
+
+chats.filter(c=>c.favorite).length;
+
+</script>
+
+</body>
+
+</html>
