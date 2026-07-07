@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Settings - AI Editor</title>
+
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/sidebar.css">
+<link rel="stylesheet" href="css/theme.css">
+<link rel="stylesheet" href="css/responsive.css">
+
+</head>
+
+<body>
+
+<div class="app">
+
+<aside class="sidebar">
+
+<div class="logo">
+
+<img src="assets/logos/logo.svg">
+
+<h2>AI Editor</h2>
+
+</div>
+
+<a href="index.html">
+
+<button id="newChat">
+
+← Back
+
+</button>
+
+</a>
+
+</aside>
+
+<main class="main">
+
+<h1>Settings</h1>
+
+<br>
+
+<div class="card glass">
+
+<h2>AI Provider</h2>
+
+<select id="providerSetting">
+
+<option value="claude">Claude</option>
+
+<option value="openai">OpenAI GPT</option>
+
+<option value="gemini">Google Gemini</option>
+
+</select>
+
+</div>
+
+<br>
+
+<div class="card glass">
+
+<h2>Temperature</h2>
+
+<input
+type="range"
+id="temperature"
+min="0"
+max="1"
+step="0.1"
+value="0.7">
+
+<p id="temperatureValue">
+
+0.7
+
+</p>
+
+</div>
+
+<br>
+
+<div class="card glass">
+
+<h2>Maximum Tokens</h2>
+
+<input
+type="number"
+id="tokens"
+value="4096"
+min="256"
+max="8192">
+
+</div>
+
+<br>
+
+<div class="card glass">
+
+<h2>Accent Color</h2>
+
+<select id="accent">
+
+<option value="purple">Purple</option>
+
+<option value="blue">Blue</option>
+
+<option value="green">Green</option>
+
+<option value="red">Red</option>
+
+</select>
+
+</div>
+
+<br>
+
+<div class="card glass">
+
+<button id="saveSettings">
+
+💾 Save Settings
+
+</button>
+
+<button
+id="resetSettings"
+style="margin-left:15px;">
+
+♻ Reset
+
+</button>
+
+</div>
+
+</main>
+
+</div>
+
+<script>
+
+const temp =
+document.getElementById("temperature");
+
+const value =
+document.getElementById("temperatureValue");
+
+temp.oninput = () => {
+
+value.innerText = temp.value;
+
+};
+
+document
+.getElementById("saveSettings")
+.onclick = () => {
+
+const settings = {
+
+provider:
+document.getElementById("providerSetting").value,
+
+temperature:
+temp.value,
+
+tokens:
+document.getElementById("tokens").value,
+
+accent:
+document.getElementById("accent").value
+
+};
+
+localStorage.setItem(
+
+"ai-editor-settings",
+
+JSON.stringify(settings)
+
+);
+
+alert("Settings Saved!");
+
+};
+
+document
+.getElementById("resetSettings")
+.onclick = () => {
+
+localStorage.removeItem(
+"ai-editor-settings"
+);
+
+location.reload();
+
+};
+
+</script>
+
+</body>
+
+</html>
