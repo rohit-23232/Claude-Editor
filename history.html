@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>History | AI Editor</title>
+
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/sidebar.css">
+<link rel="stylesheet" href="css/theme.css">
+
+</head>
+
+<body>
+
+<div class="app">
+
+<aside class="sidebar">
+
+<div class="logo">
+
+<img src="assets/logos/logo.svg">
+
+<h2>AI Editor</h2>
+
+</div>
+
+<a href="index.html">
+<button id="newChat">← Back</button>
+</a>
+
+</aside>
+
+<main class="main">
+
+<h1>Chat History</h1>
+
+<br>
+
+<ul id="historyContainer"></ul>
+
+</main>
+
+</div>
+
+<script>
+
+const history = JSON.parse(
+
+localStorage.getItem("ai-editor-history")
+
+) || [];
+
+const container =
+document.getElementById("historyContainer");
+
+history.forEach(chat=>{
+
+const li=document.createElement("li");
+
+li.innerHTML=`
+<h3>${chat.title}</h3>
+<p>${chat.provider}</p>
+`;
+
+container.appendChild(li);
+
+});
+
+</script>
+
+</body>
+
+</html>
